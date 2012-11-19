@@ -107,14 +107,14 @@ PID=0
 trap '{ test $PID -gt 0 && kill $PID && exit 1; exit 0; }' INT
 
 # connect through proxy
-echo "Connecting to proxy ..."
+echo "Connecting to proxy ($PROXYHOST:$PROXYPORT) ..."
 ssh -f -L $LOCAL:$REMOTE $PROXYUSER$PROXYHOST -p $PROXYPORT -N 
 
 # keep a copy of the process ID
 PID=`$PROCESSCOMMAND 2> /dev/null | grep "$LOCAL" | sed 's/ *$//' | sed 's/^.*[ \t]\([^ \t]*\)\/[^ \t]*$/\1/'`
 
 # make connection via tunnel
-echo "Connecting to remote ..."
+echo "Connecting to remote ($REMOTE) via local ($LOCAL) ..."
 ssh $REMOTEUSER$LOCALHOST -p $LOCALPORT
 
 # clean up
