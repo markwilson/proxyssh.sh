@@ -1,0 +1,5 @@
+PROXYHOST="example.com"
+PROXYUSER="mark"
+
+REMOTEHOST="internal.example.com"
+REMOTEUSER="markw"
